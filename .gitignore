@@ -1,0 +1,17 @@
+# Datos originales de la competencia
+house-prices-advanced-regression-techniques/
+*.zip
+# Entorno y credenciales
+.env
+.env.*
+kaggle.json
+access_token
+.venv/
+__pycache__/
+# IDE, notebooks y herramientas locales
+.idea/
+.ipynb_checkpoints/
+.codegraph/
+tmp/
+# CSV generados (se recrean ejecutando el notebook)
+outputs/*.csv
