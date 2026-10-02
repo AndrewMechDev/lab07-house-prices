@@ -12,7 +12,7 @@ DataSpell inicia el servidor Jupyter. No se necesitan `.env`, credenciales ni Ka
 
 ## Versión simplificada
 
-El notebook usa pasos directos: lectura con pandas, revisión de faltantes, histogramas, gráficos de dispersión, regresión simple, preparación de una regresión múltiple, evaluación y CSV. No contiene mapas de calor, diagramas de cajas, pipelines, ColumnTransformer ni validación cruzada.
+El notebook usa pasos directos: lectura con pandas, revisión de faltantes, histogramas, gráficos de dispersión, un pairplot de cuatro variables, regresión simple, preparación de una regresión múltiple, evaluación con precios reales/predichos y residuos, y CSV. No contiene mapas de calor, diagramas de cajas, pipelines, ColumnTransformer ni validación cruzada.
 
 El único regresor es `LinearRegression`. La regresión simple utiliza superficie; la múltiple utiliza nueve características numéricas y tres categóricas, convertidas con `pd.get_dummies`. Las medianas se calculan exclusivamente en entrenamiento. El precio se transforma con `np.log` y las predicciones vuelven a USD con `np.exp`. La superficie se transforma con `np.log1p`. Los atípicos se conservan.
 
@@ -35,3 +35,9 @@ Los datos originales, credenciales y CSV generados están excluidos de Git. El n
 - [Datos oficiales](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data).
 - [LinearRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html).
 - Material del profesor: `PPT-BI-S07-RLAZO-202602.pdf`, consultado localmente, no incluido en Git.
+
+## Cómo leer los gráficos
+
+El pairplot forma parte del EDA y cruza características con precios reales. La recta simple relaciona superficie y precio real. El gráfico real/predicho evalúa predicciones sobre validación: la diagonal representa igualdad, no una recta ajustada. El gráfico de residuos muestra precio real menos precio predicho frente al precio predicho. Un residuo positivo significa subestimación. Estos gráficos no cambian el modelo ni su score.
+
+Resultados de validación del modelo múltiple: MAE **18,301.37 USD**, RMSE **30,063.13 USD**, R² **0.8822** y RMSE log **0.14767**. El RMSE log de la simple es **0.28751**. El score público de Kaggle sigue pendiente.
